@@ -60,7 +60,7 @@ interface Cache {
 	/**
 	 * @since 1.0
 	 *
-	 * @return array
+	 * @return array|null
 	 */
 	public function getStats();
 

@@ -8,12 +8,12 @@
 [![Dependency Status](https://www.versioneye.com/php/onoi:cache/badge.png)](https://www.versioneye.com/php/onoi:cache)
 
 A minimalistic cache interface that was part of the [Semantic MediaWiki][smw] code base and
-is now deployed as independent library.
+is now being deployed as independent library.
 
-- Support for MediaWiki's `BagOStuff` cache
-- Support for `Doctrine` cache clients
-- Provides a [LRU][lru] `FixedInMemoryCache` array cache that can be used without any external dependency
-- Provides a `CompositeCache` to combine different cache instances and allow an access by hierarchical iteration
+- Support for MediaWiki's `BagOStuff` cache interface
+- Support for the `Doctrine` cache interface
+- Provides a [LRU][lru] `FixedInMemoryCache` array cache to be used without any external dependency
+- Provides a `CompositeCache` to combine different cache instances and allow access through hierarchical iteration on a first-come first-served basis
 
 ## Requirements
 
@@ -21,15 +21,17 @@ PHP 5.3 or later
 
 ## Installation
 
-The recommended installation method for this library is by using [Composer][composer].
+The recommended installation method for this library is by either adding
+the dependency to your [composer.json][composer].
 
 ```json
 {
 	"require": {
-		"onoi/cache": "~1.0*"
+		"onoi/cache": "~1.0"
 	}
 }
 ```
+or to execute `composer require onoi/cache:~1.0`.
 
 ## Usage
 
@@ -55,8 +57,8 @@ The cache interface for all interactions is specified by `Onoi\Cache\Cache`.
 ```php
 	$cacheFactory = new CacheFactory();
 
-	$foo = new Foo( $cacheFactory->newFixedInMemoryCache( 500 ) );
-	$foo->doSomething( 'bar' );
+	$instance = new Foo( $cacheFactory->newFixedInMemoryCache( 500 ) );
+	$instance->doSomething( 'bar' );
 ```
 ```php
 	$cacheFactory = new CacheFactory();
@@ -67,8 +69,8 @@ The cache interface for all interactions is specified by `Onoi\Cache\Cache`.
 		$cacheFactory->newDoctrineCache( new \Doctrine\Common\Cache\FileCache( '/C/Foo' ) )
 	) );
 
-	$foo = new Foo( $compositeCache );
-	$foo->doSomething( 'bar' );
+	$instance = new Foo( $compositeCache );
+	$instance->doSomething( 'bar' );
 
 ```
 
