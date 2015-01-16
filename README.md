@@ -86,6 +86,10 @@ developers mailing list and have a look at the [contribution guidelinee](/CONTRI
 
 The library provides unit tests that covers the core-functionality normally run by the [continues integration platform][travis]. Tests can also be executed manually using the PHPUnit configuration file found in the root directory.
 
+### Release notes
+
+* 1.0.0 initial release (2015-01-16)
+
 ## License
 
 [GNU General Public License 2.0 or later][license].
