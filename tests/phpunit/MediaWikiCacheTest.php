@@ -21,7 +21,7 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		if ( !class_exists( '\BagOstuff' ) && !isset( $GLOBALS['wgAutoloadClasses']['BagOstuff'] ) ) {
+		if ( !class_exists( '\BagOstuff' ) ) {
 			$this->markTestSkipped( 'BagOstuff interface is not avilable' );
 		}
 
@@ -104,6 +104,18 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 		// Internally the access is cached
 		$this->assertTrue(
 			$instance->contains( 'Foo' )
+		);
+	}
+
+	public function testFetchForFalse() {
+
+		$this->cache->expects( $this->once() )
+			->method( 'get' );
+
+		$instance =	new MediaWikiCache( $this->cache );
+
+		$this->assertFalse(
+			$instance->fetch( 'Bar' )
 		);
 	}
 

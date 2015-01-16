@@ -29,6 +29,23 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testClear() {
+
+		$instance = CacheFactory::getInstance();
+
+		$this->assertSame(
+			$instance,
+			CacheFactory::getInstance()
+		);
+
+		$instance->clear();
+
+		$this->assertNotSame(
+			$instance,
+			CacheFactory::getInstance()
+		);
+	}
+
 	public function testNewMediaWikiCache() {
 
 		if ( !class_exists( '\BagOstuff' ) ) {
