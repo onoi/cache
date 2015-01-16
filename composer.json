@@ -1,0 +1,30 @@
+{
+	"name": "onoi/cache",
+	"type": "library",
+	"description": "A minimalistic cache interface library",
+	"keywords": [
+		"cache"
+	],
+	"homepage": "https://github.com/onoi/cache",
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "mwjames",
+			"homepage": "https://github.com/mwjames"
+		}
+	],
+	"require": {
+		"php": ">=5.3.2"
+	},
+	"autoload": {
+		"psr-4": {
+			"Onoi\\Cache\\": "src/"
+		}
+	},
+	"config": {
+		"process-timeout": 0
+	},
+	"scripts":{
+		"phpunit": "phpunit -c phpunit.xml.dist"
+	}
+}
