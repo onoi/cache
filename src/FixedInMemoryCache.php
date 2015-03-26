@@ -40,7 +40,7 @@ class FixedInMemoryCache implements Cache {
 	private $cacheMisses = 0;
 
 	/**
-	 * @since 2.1
+	 * @since 1.0
 	 *
 	 * @param integer $maxCacheCount
 	 */
@@ -49,7 +49,7 @@ class FixedInMemoryCache implements Cache {
 	}
 
 	/**
-	 * @since 2.1
+	 * @since 1.0
 	 *
 	 * {@inheritDoc}
 	 */
@@ -58,7 +58,7 @@ class FixedInMemoryCache implements Cache {
 	}
 
 	/**
-	 * @since 2.1
+	 * @since 1.0
 	 *
 	 * {@inheritDoc}
 	 */
@@ -74,7 +74,7 @@ class FixedInMemoryCache implements Cache {
 	}
 
 	/**
-	 * @since 2.1
+	 * @since 1.0
 	 *
 	 * {@inheritDoc}
 	 */
@@ -94,7 +94,7 @@ class FixedInMemoryCache implements Cache {
 	}
 
 	/**
-	 * @since 2.1
+	 * @since 1.0
 	 *
 	 * {@inheritDoc}
 	 */
@@ -110,7 +110,7 @@ class FixedInMemoryCache implements Cache {
 	}
 
 	/**
-	 * @since 2.1
+	 * @since 1.0
 	 *
 	 * {@inheritDoc}
 	 */

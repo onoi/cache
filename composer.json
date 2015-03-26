@@ -1,7 +1,7 @@
 {
 	"name": "onoi/cache",
 	"type": "library",
-	"description": "A minimalistic cache interface library",
+	"description": "A minimalistic cache adapter interface library",
 	"keywords": [
 		"cache"
 	],

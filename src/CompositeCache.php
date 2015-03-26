@@ -44,6 +44,8 @@ class CompositeCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function fetch( $id ) {
@@ -73,6 +75,8 @@ class CompositeCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function contains( $id ) {
@@ -87,6 +91,8 @@ class CompositeCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function save( $id, $data, $ttl = 0 ) {
@@ -96,6 +102,8 @@ class CompositeCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function delete( $id ) {
@@ -105,6 +113,8 @@ class CompositeCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function getStats() {

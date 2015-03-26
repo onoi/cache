@@ -29,6 +29,8 @@ class DoctrineCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function fetch( $id ) {
@@ -36,6 +38,8 @@ class DoctrineCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function contains( $id ) {
@@ -43,6 +47,8 @@ class DoctrineCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function save( $id, $data, $ttl = 0 ) {
@@ -50,6 +56,8 @@ class DoctrineCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function delete( $id ) {
@@ -57,6 +65,8 @@ class DoctrineCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function getStats() {

@@ -67,6 +67,8 @@ class MediaWikiCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function contains( $id ) {
@@ -81,6 +83,8 @@ class MediaWikiCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function save( $id, $data, $ttl = 0 ) {
@@ -90,6 +94,8 @@ class MediaWikiCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function delete( $id ) {
@@ -99,6 +105,8 @@ class MediaWikiCache implements Cache {
 	}
 
 	/**
+	 * @since  1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function getStats() {

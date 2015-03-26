@@ -46,7 +46,7 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testNewMediaWikiCache() {
+	public function testCanConstructMediaWikiCache() {
 
 		if ( !class_exists( '\BagOstuff' ) ) {
 			$this->markTestSkipped( 'BagOstuff interface is not avilable' );
@@ -64,7 +64,7 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testNewDoctrineCache() {
+	public function testCanConstructDoctrineCache() {
 
 		if ( !interface_exists( '\Doctrine\Common\Cache\Cache' ) ) {
 			$this->markTestSkipped( 'Doctrine cache interface is not avilable' );
@@ -82,7 +82,7 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testNewFixedInMemoryCache() {
+	public function testCanConstructFixedInMemoryCache() {
 
 		$instance =	new CacheFactory();
 
@@ -92,7 +92,7 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testNewCompositeCache() {
+	public function testCanConstructCompositeCache() {
 
 		$instance =	new CacheFactory();
 
@@ -103,6 +103,16 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf(
 			'\Onoi\Cache\CompositeCache',
 			$instance->newCompositeCache( $cache )
+		);
+	}
+
+	public function testCanConstructNullCache() {
+
+		$instance =	new CacheFactory();
+
+		$this->assertInstanceOf(
+			'\Onoi\Cache\NullCache',
+			$instance->newNullCache()
 		);
 	}
 

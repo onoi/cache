@@ -83,4 +83,13 @@ class CacheFactory {
 		return new CompositeCache( $caches );
 	}
 
+	/**
+	 * @since 1.1
+	 *
+	 * @return NullCache
+	 */
+	public function newNullCache() {
+		return new NullCache();
+	}
+
 }

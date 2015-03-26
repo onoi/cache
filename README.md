@@ -7,13 +7,14 @@
 [![Packagist download count](https://poser.pugx.org/onoi/cache/d/total.png)](https://packagist.org/packages/onoi/cache)
 [![Dependency Status](https://www.versioneye.com/php/onoi:cache/badge.png)](https://www.versioneye.com/php/onoi:cache)
 
-A minimalistic cache interface that was part of the [Semantic MediaWiki][smw] code base and
+A minimalistic cache adapter interface that was part of the [Semantic MediaWiki][smw] code base and
 is now being deployed as independent library.
 
 - Support for MediaWiki's `BagOStuff` cache interface
 - Support for the `Doctrine` cache interface
 - Provides a [LRU][lru] `FixedInMemoryCache` array cache to be used without any external dependency
-- Provides a `CompositeCache` to combine different cache instances and allow access through hierarchical iteration on a first-come first-served basis
+- Provides a `CompositeCache` to combine different cache instances and allow access through
+  hierarchical iteration on a first-come first-served basis
 
 ## Requirements
 
@@ -27,51 +28,45 @@ the dependency to your [composer.json][composer].
 ```json
 {
 	"require": {
-		"onoi/cache": "~1.0"
+		"onoi/cache": "~1.1"
 	}
 }
 ```
-or to execute `composer require onoi/cache:~1.0`.
+or to execute `composer require onoi/cache:~1.1`.
 
 ## Usage
 
-The cache interface for all interactions is specified by `Onoi\Cache\Cache`.
-
 ```php
-	class Foo {
+class Foo {
 
-		private $cache = null;
+	private $cache = null;
 
-		public function __constructor( Onoi\Cache\Cache $cache ) {
-			$this->cache = $cache;
-		}
+	public function __constructor( Onoi\Cache\Cache $cache ) {
+		$this->cache = $cache;
+	}
 
-		public function doSomething( $id ) {
+	public function doSomething( $id ) {
 
-			if ( $this->cache->contains( $id ) ) {
-				// do something
-			}
+		if ( $this->cache->contains( $id ) ) {
+			// do something
 		}
 	}
+}
 ```
 ```php
-	$cacheFactory = new CacheFactory();
+$cacheFactory = new CacheFactory();
 
-	$instance = new Foo( $cacheFactory->newFixedInMemoryCache( 500 ) );
-	$instance->doSomething( 'bar' );
-```
-```php
-	$cacheFactory = new CacheFactory();
+$instance = new Foo( $cacheFactory->newFixedInMemoryCache( 500 ) );
+$instance->doSomething( 'bar' );
 
-	$compositeCache = $cacheFactory->newCompositeCache( array(
-		$cacheFactory->newFixedInMemoryCache( 500 ),
-		$cacheFactory->newMediaWikiCache( new \SqlBagOStuf() ),
-		$cacheFactory->newDoctrineCache( new \Doctrine\Common\Cache\FileCache( '/C/Foo' ) )
-	) );
+$compositeCache = $cacheFactory->newCompositeCache( array(
+	$cacheFactory->newFixedInMemoryCache( 500 ),
+	$cacheFactory->newMediaWikiCache( new \SqlBagOStuf() ),
+	$cacheFactory->newDoctrineCache( new \Doctrine\Common\Cache\FileCache( '/C/Foo' ) )
+) );
 
-	$instance = new Foo( $compositeCache );
-	$instance->doSomething( 'bar' );
-
+$instance = new Foo( $compositeCache );
+$instance->doSomething( 'bar' );
 ```
 
 ## Contribution and support
@@ -88,7 +83,8 @@ The library provides unit tests that covers the core-functionality normally run 
 
 ### Release notes
 
-* 1.0.0 initial release (2015-01-16)
+* 1.1.0 Added `NullCache` (2015-01-26)
+* 1.0.0 Initial release (2015-01-16)
 
 ## License
 
