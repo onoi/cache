@@ -20,6 +20,11 @@ class FixedInMemoryLruCache implements Cache {
 	private $cache = array();
 
 	/**
+	 * @var array
+	 */
+	private $ttl = array();
+
+	/**
 	 * @var integer
 	 */
 	private $maxCacheCount;
@@ -28,6 +33,16 @@ class FixedInMemoryLruCache implements Cache {
 	 * @var integer
 	 */
 	private $count = 0;
+
+	/**
+	 * @var integer
+	 */
+	private $cacheInserts = 0;
+
+	/**
+	 * @var integer
+	 */
+	private $cacheDeletes = 0;
 
 	/**
 	 * @var integer
@@ -54,7 +69,18 @@ class FixedInMemoryLruCache implements Cache {
 	 * {@inheritDoc}
 	 */
 	public function contains( $id ) {
-		return isset( $this->cache[ $id ] ) || array_key_exists( $id, $this->cache );
+
+		$contains = isset( $this->cache[ $id ] ) || array_key_exists( $id, $this->cache );
+
+		if ( !$contains ) {
+			return false;
+		}
+
+		if ( $this->ttl[ $id ] > 0 && $this->ttl[ $id ] <= microtime( true ) ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -66,7 +92,7 @@ class FixedInMemoryLruCache implements Cache {
 
 		if ( $this->contains( $id ) ) {
 			$this->cacheHits++;
-			return $this->moveToMostRecentlyUsed( $id );
+			return $this->moveToMostRecentlyUsedPosition( $id );
 		}
 
 		$this->cacheMisses++;
@@ -79,11 +105,13 @@ class FixedInMemoryLruCache implements Cache {
 	 * {@inheritDoc}
 	 */
 	public function save( $id, $value, $ttl = 0 ) {
+
 		$this->count++;
+		$this->cacheInserts++;
 
 		if ( $this->contains( $id ) ) {
 			$this->count--;
-			$this->moveToMostRecentlyUsed( $id );
+			$this->moveToMostRecentlyUsedPosition( $id );
 		} elseif ( $this->count > $this->maxCacheCount ) {
 			$this->count--;
 			reset( $this->cache );
@@ -91,6 +119,7 @@ class FixedInMemoryLruCache implements Cache {
 		}
 
 		$this->cache[ $id ] = $value;
+		$this->ttl[ $id ] = $ttl > 0 ? microtime( true ) + $ttl : 0;
 	}
 
 	/**
@@ -102,7 +131,9 @@ class FixedInMemoryLruCache implements Cache {
 
 		if ( $this->contains( $id ) ) {
 			$this->count--;
+			$this->cacheDeletes++;
 			unset( $this->cache[ $id ] );
+			unset( $this->ttl[ $id ] );
 			return true;
 		}
 
@@ -116,14 +147,17 @@ class FixedInMemoryLruCache implements Cache {
 	 */
 	public function getStats() {
 		return array(
-			'max'    => $this->maxCacheCount,
-			'count'  => $this->count,
-			'hits'   => $this->cacheHits,
-			'misses' => $this->cacheMisses
+			'inserts' => $this->cacheInserts,
+			'deletes' => $this->cacheDeletes,
+			'max'     => $this->maxCacheCount,
+			'count'   => $this->count,
+			'hits'    => $this->cacheHits,
+			'misses'  => $this->cacheMisses
 		);
 	}
 
-	private function moveToMostRecentlyUsed( $id ) {
+	private function moveToMostRecentlyUsedPosition( $id ) {
+
 		$value = $this->cache[ $id ];
 		unset( $this->cache[ $id ] );
 		$this->cache[ $id ] = $value;

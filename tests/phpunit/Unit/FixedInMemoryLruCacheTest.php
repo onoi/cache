@@ -58,6 +58,11 @@ class FixedInMemoryLruCacheTest extends \PHPUnit_Framework_TestCase {
 			1,
 			$stats['count']
 		);
+
+		$this->assertEquals(
+			1,
+			$stats['deletes']
+		);
 	}
 
 	public function testLeastRecentlyUsedShiftForLimitedCacheSize() {
@@ -84,6 +89,11 @@ class FixedInMemoryLruCacheTest extends \PHPUnit_Framework_TestCase {
 			$stats['count']
 		);
 
+		$this->assertEquals(
+			6,
+			$stats['inserts']
+		);
+
 		// 'éèêë' moves to the top (last postion as most recently used) and
 		// 'アイウエオ' becomes the next LRU candidate
 		$this->assertEquals(
@@ -106,6 +116,32 @@ class FixedInMemoryLruCacheTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(
 			5,
 			$stats['count']
+		);
+	}
+
+	public function testFetchTtlBasedItem() {
+
+		$instance = new FixedInMemoryLruCache( 5 );
+
+		$instance->save( 'foo', 'Bar', 3 );
+
+		$this->assertTrue(
+			$instance->contains( 'foo' )
+		);
+
+		$this->assertEquals(
+			'Bar',
+			$instance->fetch( 'foo' )
+		);
+
+		sleep( 4 );
+
+		$this->assertFalse(
+			$instance->contains( 'foo' )
+		);
+
+		$this->assertFalse(
+			$instance->fetch( 'foo' )
 		);
 	}
 
