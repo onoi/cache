@@ -20,4 +20,4 @@ if ( !is_readable( __DIR__ . '/../../../autoload.php' ) ) {
 
 $autoLoader = require __DIR__ . '/../../../autoload.php';
 $autoLoader->addPsr4( 'Onoi\\Cache\\Tests\\', __DIR__ . '/phpunit/Unit' );
-$autoLoader->addPsr4( 'Onoi\\Cache\\Tests\\Integration', __DIR__ . '/phpunit/Integration' );
+$autoLoader->addPsr4( 'Onoi\\Cache\\Tests\\Integration\\', __DIR__ . '/phpunit/Integration' );
