@@ -15,5 +15,5 @@ then
 		composer phpunit -- --coverage-clover $BASE_PATH/build/coverage.clover
 	fi
 else
-  composer phpunit 
+	composer phpunit 
 fi

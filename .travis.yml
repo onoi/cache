@@ -7,8 +7,10 @@ matrix:
   include:
     - env: DB=mysql; MW=master; DOCTRINE=1.4.0; TYPE=coverage
       php: 5.6
-    - env: TYPE=UNIT;
+    - env: ZENDCACHE=2.3.7; TYPE=coverage
       php: 5.4
+    - env: TYPE=UNIT;
+      php: '7'
     - env: TYPE=UNIT;
       php: hhvm
 

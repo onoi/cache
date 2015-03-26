@@ -12,6 +12,7 @@ is now being deployed as independent library.
 
 - Support for MediaWiki's `BagOStuff` cache interface
 - Support for the `Doctrine` cache interface
+- Support for the `Zend` cache (ZF2) interface
 - Provides a `FixedInMemoryLruCache` array [LRU][lru] cache without any external cache provider dependency
 - Provides a `CompositeCache` to combine different cache instances and allow access through
   hierarchical iteration on a first-come first-served basis
@@ -83,8 +84,9 @@ The library provides unit tests that covers the core-functionality normally run 
 
 ### Release notes
 
-- 1.1.0 (2015-01-26)
+- 1.1.0 (2015-03-26)
  - Added `NullCache`
+ - Added `ZendCache`
  - Renamed `FixedInMemoryCache` to `FixedInMemoryLruCache`
 
 - 1.0.0 Initial release (2015-01-16)

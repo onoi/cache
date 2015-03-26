@@ -106,7 +106,7 @@ class MediaWikiCache implements Cache {
 	 * {@inheritDoc}
 	 */
 	public function delete( $id ) {
-		$this->cacheDeletes--;
+		$this->cacheDeletes++;
 		$this->cache->delete( $id );
 		unset( $this->inMemoryCache[ $id ] );
 	}

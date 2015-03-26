@@ -49,14 +49,14 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 	public function testCanConstructMediaWikiCache() {
 
 		if ( !class_exists( '\BagOstuff' ) ) {
-			$this->markTestSkipped( 'BagOstuff interface is not avilable' );
+			$this->markTestSkipped( 'BagOstuff interface is not available' );
 		}
 
 		$cache = $this->getMockBuilder( '\BagOstuff' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$instance =	new CacheFactory();
+		$instance = new CacheFactory();
 
 		$this->assertInstanceOf(
 			'\Onoi\Cache\MediaWikiCache',
@@ -67,14 +67,14 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 	public function testCanConstructDoctrineCache() {
 
 		if ( !interface_exists( '\Doctrine\Common\Cache\Cache' ) ) {
-			$this->markTestSkipped( 'Doctrine cache interface is not avilable' );
+			$this->markTestSkipped( 'Doctrine cache interface is not available' );
 		}
 
 		$cache = $this->getMockBuilder( '\Doctrine\Common\Cache\Cache' )
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 
-		$instance =	new CacheFactory();
+		$instance = new CacheFactory();
 
 		$this->assertInstanceOf(
 			'\Onoi\Cache\DoctrineCache',
@@ -84,7 +84,7 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 
 	public function testCanConstructFixedInMemoryLruCache() {
 
-		$instance =	new CacheFactory();
+		$instance = new CacheFactory();
 
 		$this->assertInstanceOf(
 			'\Onoi\Cache\FixedInMemoryLruCache',
@@ -100,7 +100,7 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 
 	public function testCanConstructCompositeCache() {
 
-		$instance =	new CacheFactory();
+		$instance = new CacheFactory();
 
 		$cache = array(
 			$instance->newFixedInMemoryCache()
@@ -114,11 +114,29 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 
 	public function testCanConstructNullCache() {
 
-		$instance =	new CacheFactory();
+		$instance = new CacheFactory();
 
 		$this->assertInstanceOf(
 			'\Onoi\Cache\NullCache',
 			$instance->newNullCache()
+		);
+	}
+
+	public function testCanConstructZendCache() {
+
+		if ( !interface_exists( '\Zend\Cache\Storage\StorageInterface' ) ) {
+			$this->markTestSkipped( 'StorageInterface is not available' );
+		}
+
+		$cache = $this->getMockBuilder( '\Zend\Cache\Storage\StorageInterface' )
+			->disableOriginalConstructor()
+			->getMockForAbstractClass();
+
+		$instance = new CacheFactory();
+
+		$this->assertInstanceOf(
+			'\Onoi\Cache\ZendCache',
+			$instance->newZendCache( $cache )
 		);
 	}
 
