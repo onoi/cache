@@ -22,7 +22,7 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 		parent::setUp();
 
 		if ( !class_exists( '\BagOstuff' ) ) {
-			$this->markTestSkipped( 'BagOstuff interface is not avilable' );
+			$this->markTestSkipped( 'BagOstuff interface is not available' );
 		}
 
 		$this->cache = $this->getMockBuilder( '\BagOstuff' )
