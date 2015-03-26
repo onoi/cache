@@ -31,7 +31,12 @@ class MediaWikiCache implements Cache {
 	/**
 	 * @var integer
 	 */
-	private $count = 0;
+	private $cacheInserts = 0;
+
+	/**
+	 * @var integer
+	 */
+	private $cacheDeletes = 0;
 
 	/**
 	 * @var integer
@@ -53,6 +58,8 @@ class MediaWikiCache implements Cache {
 	}
 
 	/**
+	 * @since 1.0
+	 *
 	 * {@inheritDoc}
 	 */
 	public function fetch( $id ) {
@@ -67,7 +74,7 @@ class MediaWikiCache implements Cache {
 	}
 
 	/**
-	 * @since  1.0
+	 * @since 1.0
 	 *
 	 * {@inheritDoc}
 	 */
@@ -83,37 +90,38 @@ class MediaWikiCache implements Cache {
 	}
 
 	/**
-	 * @since  1.0
+	 * @since 1.0
 	 *
 	 * {@inheritDoc}
 	 */
 	public function save( $id, $data, $ttl = 0 ) {
-		$this->count++;
+		$this->cacheInserts++;
 		$this->cache->set( $id, $data, $ttl );
 		unset( $this->inMemoryCache[ $id ] );
 	}
 
 	/**
-	 * @since  1.0
+	 * @since 1.0
 	 *
 	 * {@inheritDoc}
 	 */
 	public function delete( $id ) {
-		$this->count--;
+		$this->cacheDeletes--;
 		$this->cache->delete( $id );
 		unset( $this->inMemoryCache[ $id ] );
 	}
 
 	/**
-	 * @since  1.0
+	 * @since 1.0
 	 *
 	 * {@inheritDoc}
 	 */
 	public function getStats() {
 		return array(
-			'count'  => $this->count,
-			'hits'   => $this->cacheHits,
-			'misses' => $this->cacheMisses
+			'inserts' => $this->cacheInserts,
+			'deletes' => $this->cacheDeletes,
+			'hits'    => $this->cacheHits,
+			'misses'  => $this->cacheMisses
 		);
 	}
 

@@ -134,4 +134,5 @@ class FixedInMemoryLruCache implements Cache {
 }
 
 // Renamed in 1.1
+// @codeCoverageIgnore
 class_alias( 'Onoi\Cache\FixedInMemoryLruCache', 'Onoi\Cache\FixedInMemoryCache' );

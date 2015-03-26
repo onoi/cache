@@ -131,9 +131,10 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 		$instance->fetch( 'Foo' );
 
 		$expected = array(
-			'count'  => 0,
-			'hits'   => 1,
-			'misses' => 0
+			'inserts' => 0,
+			'deletes' => 0,
+			'hits'    => 1,
+			'misses'  => 0
 		);
 
 		$this->assertEquals(
