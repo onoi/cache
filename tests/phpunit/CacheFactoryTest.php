@@ -82,10 +82,16 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
-	public function testCanConstructFixedInMemoryCache() {
+	public function testCanConstructFixedInMemoryLruCache() {
 
 		$instance =	new CacheFactory();
 
+		$this->assertInstanceOf(
+			'\Onoi\Cache\FixedInMemoryLruCache',
+			$instance->newFixedInMemoryLruCache( 1 )
+		);
+
+		// Legacy
 		$this->assertInstanceOf(
 			'\Onoi\Cache\FixedInMemoryCache',
 			$instance->newFixedInMemoryCache( 1 )

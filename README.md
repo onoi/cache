@@ -12,13 +12,13 @@ is now being deployed as independent library.
 
 - Support for MediaWiki's `BagOStuff` cache interface
 - Support for the `Doctrine` cache interface
-- Provides a [LRU][lru] `FixedInMemoryCache` array cache to be used without any external dependency
+- Provides a `FixedInMemoryLruCache` array [LRU][lru] cache without any external cache provider dependency
 - Provides a `CompositeCache` to combine different cache instances and allow access through
   hierarchical iteration on a first-come first-served basis
 
 ## Requirements
 
-PHP 5.3 or later
+PHP 5.3 / HHVM 3.3 or later
 
 ## Installation
 
@@ -56,11 +56,11 @@ class Foo {
 ```php
 $cacheFactory = new CacheFactory();
 
-$instance = new Foo( $cacheFactory->newFixedInMemoryCache( 500 ) );
+$instance = new Foo( $cacheFactory->newFixedInMemoryLruCache( 500 ) );
 $instance->doSomething( 'bar' );
 
 $compositeCache = $cacheFactory->newCompositeCache( array(
-	$cacheFactory->newFixedInMemoryCache( 500 ),
+	$cacheFactory->newFixedInMemoryLruCache( 500 ),
 	$cacheFactory->newMediaWikiCache( new \SqlBagOStuf() ),
 	$cacheFactory->newDoctrineCache( new \Doctrine\Common\Cache\FileCache( '/C/Foo' ) )
 ) );
@@ -83,8 +83,11 @@ The library provides unit tests that covers the core-functionality normally run 
 
 ### Release notes
 
-* 1.1.0 Added `NullCache` (2015-01-26)
-* 1.0.0 Initial release (2015-01-16)
+- 1.1.0 (2015-01-26)
+-- Added `NullCache`
+-- Renamed `FixedInMemoryCache` to `FixedInMemoryLruCache`
+
+- 1.0.0 Initial release (2015-01-16)
 
 ## License
 

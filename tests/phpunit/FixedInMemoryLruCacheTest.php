@@ -2,10 +2,11 @@
 
 namespace Onoi\Cache\Tests;
 
+use Onoi\Cache\FixedInMemoryLruCache;
 use Onoi\Cache\FixedInMemoryCache;
 
 /**
- * @covers \Onoi\Cache\FixedInMemoryCache
+ * @covers \Onoi\Cache\FixedInMemoryLruCache
  *
  * @group onoi-cache
  *
@@ -14,10 +15,16 @@ use Onoi\Cache\FixedInMemoryCache;
  *
  * @author mwjames
  */
-class FixedInMemoryCacheTest extends \PHPUnit_Framework_TestCase {
+class FixedInMemoryLruCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testCanConstruct() {
 
+		$this->assertInstanceOf(
+			'\Onoi\Cache\FixedInMemoryLruCache',
+			new FixedInMemoryLruCache()
+		);
+
+		// Class alias with 1.1
 		$this->assertInstanceOf(
 			'\Onoi\Cache\FixedInMemoryCache',
 			new FixedInMemoryCache()
@@ -26,7 +33,7 @@ class FixedInMemoryCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testItemRemoval() {
 
-		$instance = new FixedInMemoryCache( 5 );
+		$instance = new FixedInMemoryLruCache( 5 );
 
 		$instance->save( 'foo', array( 'foo' ) );
 		$instance->save( 42, null );
@@ -55,7 +62,7 @@ class FixedInMemoryCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testLeastRecentlyUsedShiftForLimitedCacheSize() {
 
-		$instance = new FixedInMemoryCache( 5 );
+		$instance = new FixedInMemoryLruCache( 5 );
 		$instance->save( 'abcde', array( 'abcde' ) );
 
 		$this->assertEquals(

@@ -12,7 +12,7 @@ namespace Onoi\Cache;
  * @license GNU GPL v2+
  * @since 1.0
  */
-class FixedInMemoryCache implements Cache {
+class FixedInMemoryLruCache implements Cache {
 
 	/**
 	 * @var array
@@ -132,3 +132,6 @@ class FixedInMemoryCache implements Cache {
 	}
 
 }
+
+// Renamed in 1.1
+class_alias( 'Onoi\Cache\FixedInMemoryLruCache', 'Onoi\Cache\FixedInMemoryCache' );

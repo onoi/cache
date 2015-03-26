@@ -62,14 +62,23 @@ class CacheFactory {
 	}
 
 	/**
-	 * @since 1.0
+	 * @since 1.1
 	 *
 	 * @param integer $cacheSize
 	 *
-	 * @return FixedInMemoryCache
+	 * @return FixedInMemoryLruCache
+	 */
+	public function newFixedInMemoryLruCache( $cacheSize = 500 ) {
+		return new FixedInMemoryLruCache( $cacheSize );
+	}
+
+	/**
+	 * @since 1.0
+	 *
+	 * @deprecated since 1.1, use CacheFactory::newFixedInMemoryLruCache
 	 */
 	public function newFixedInMemoryCache( $cacheSize = 500 ) {
-		return new FixedInMemoryCache( $cacheSize );
+		return $this->newFixedInMemoryLruCache( $cacheSize );
 	}
 
 	/**
