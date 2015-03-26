@@ -47,7 +47,7 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 				$this->anything(),
 				$this->equalTo( 42 ) );
 
-		$instance =	new MediaWikiCache( $this->cache );
+		$instance = new MediaWikiCache( $this->cache );
 		$instance->save( 'Foo', 'Bar', 42 );
 
 		$this->assertFalse(
@@ -62,11 +62,23 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 			->with(
 				$this->equalTo( 'Foo' ) );
 
-		$instance =	new MediaWikiCache( $this->cache );
+		$instance = new MediaWikiCache( $this->cache );
 		$instance->delete( 'Foo' );
 
 		$this->assertFalse(
 			$instance->contains( 'Foo' )
+		);
+
+		$expected = array(
+			'inserts' => 0,
+			'deletes' => 1,
+			'hits'    => 0,
+			'misses'  => 0
+		);
+
+		$this->assertEquals(
+			$expected,
+			$instance->getStats()
 		);
 	}
 
@@ -77,7 +89,7 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 			->with(
 				$this->equalTo( 'Foo' ) );
 
-		$instance =	new MediaWikiCache( $this->cache );
+		$instance = new MediaWikiCache( $this->cache );
 		$instance->contains( 'Foo' );
 
 		// Internally the access is cached
@@ -94,7 +106,7 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 				$this->equalTo( 'Foo' ) )
 			->will( $this->returnValue( 'Bar' ) );
 
-		$instance =	new MediaWikiCache( $this->cache );
+		$instance = new MediaWikiCache( $this->cache );
 
 		$this->assertEquals(
 			'Bar',
@@ -112,10 +124,22 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 		$this->cache->expects( $this->once() )
 			->method( 'get' );
 
-		$instance =	new MediaWikiCache( $this->cache );
+		$instance = new MediaWikiCache( $this->cache );
 
 		$this->assertFalse(
 			$instance->fetch( 'Bar' )
+		);
+
+		$expected = array(
+			'inserts' => 0,
+			'deletes' => 0,
+			'hits'    => 0,
+			'misses'  => 1
+		);
+
+		$this->assertEquals(
+			$expected,
+			$instance->getStats()
 		);
 	}
 
@@ -127,7 +151,7 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 				$this->equalTo( 'Foo' ) )
 			->will( $this->returnValue( 'Bar' ) );
 
-		$instance =	new MediaWikiCache( $this->cache );
+		$instance = new MediaWikiCache( $this->cache );
 		$instance->fetch( 'Foo' );
 
 		$expected = array(

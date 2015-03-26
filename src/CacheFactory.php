@@ -3,6 +3,7 @@
 namespace Onoi\Cache;
 
 use Doctrine\Common\Cache\Cache as DoctrineCacheClient;
+use Zend\Cache\Storage\StorageInterface;
 use BagOStuff;
 
 /**
@@ -99,6 +100,17 @@ class CacheFactory {
 	 */
 	public function newNullCache() {
 		return new NullCache();
+	}
+
+	/**
+	 * @since 1.1
+	 *
+	 * @param StorageInterface $cache
+	 *
+	 * @return ZendCache
+	 */
+	public function newZendCache( StorageInterface $cache ) {
+		return new ZendCache( $cache );
 	}
 
 }

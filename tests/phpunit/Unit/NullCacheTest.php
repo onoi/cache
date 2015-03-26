@@ -26,7 +26,7 @@ class NullCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testSave() {
 
-		$instance =	new NullCache();
+		$instance = new NullCache();
 		$instance->save( 'Foo', 'Bar', 42 );
 
 		$this->assertFalse(
@@ -36,7 +36,7 @@ class NullCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testDelete() {
 
-		$instance =	new NullCache();
+		$instance = new NullCache();
 		$instance->delete( 'Foo' );
 
 		$this->assertFalse(
@@ -46,7 +46,7 @@ class NullCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testContains() {
 
-		$instance =	new NullCache();
+		$instance = new NullCache();
 
 		$this->assertFalse(
 			$instance->contains( 'Foo' )
@@ -55,7 +55,7 @@ class NullCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testFetch() {
 
-		$instance =	new NullCache();
+		$instance = new NullCache();
 
 		$this->assertFalse(
 			$instance->fetch( 'Foo' )
@@ -64,7 +64,7 @@ class NullCacheTest extends \PHPUnit_Framework_TestCase {
 
 	public function testGetStats() {
 
-		$instance =	new NullCache();
+		$instance = new NullCache();
 
 		$this->assertEmpty(
 			$instance->getStats()

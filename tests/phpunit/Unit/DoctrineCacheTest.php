@@ -22,7 +22,7 @@ class DoctrineCacheTest extends \PHPUnit_Framework_TestCase {
 		parent::setUp();
 
 		if ( !interface_exists( '\Doctrine\Common\Cache\Cache' ) ) {
-			$this->markTestSkipped( 'Doctrine cache interface is not avilable' );
+			$this->markTestSkipped( 'Doctrine cache interface is not available' );
 		}
 
 		$this->cache = $this->getMockBuilder( '\Doctrine\Common\Cache\Cache' )
@@ -47,7 +47,7 @@ class DoctrineCacheTest extends \PHPUnit_Framework_TestCase {
 				$this->anything(),
 				$this->equalTo( 42 ) );
 
-		$instance =	new DoctrineCache( $this->cache );
+		$instance = new DoctrineCache( $this->cache );
 		$instance->save( 'Foo', 'Bar', 42 );
 	}
 
@@ -58,7 +58,7 @@ class DoctrineCacheTest extends \PHPUnit_Framework_TestCase {
 			->with(
 				$this->equalTo( 'Foo' ) );
 
-		$instance =	new DoctrineCache( $this->cache );
+		$instance = new DoctrineCache( $this->cache );
 		$instance->delete( 'Foo' );
 	}
 
@@ -69,7 +69,7 @@ class DoctrineCacheTest extends \PHPUnit_Framework_TestCase {
 			->with(
 				$this->equalTo( 'Foo' ) );
 
-		$instance =	new DoctrineCache( $this->cache );
+		$instance = new DoctrineCache( $this->cache );
 		$instance->contains( 'Foo' );
 	}
 
@@ -81,7 +81,7 @@ class DoctrineCacheTest extends \PHPUnit_Framework_TestCase {
 				$this->equalTo( 'Foo' ) )
 			->will( $this->returnValue( 'Bar' ) );
 
-		$instance =	new DoctrineCache( $this->cache );
+		$instance = new DoctrineCache( $this->cache );
 
 		$this->assertEquals(
 			'Bar',
@@ -94,7 +94,7 @@ class DoctrineCacheTest extends \PHPUnit_Framework_TestCase {
 		$this->cache->expects( $this->once() )
 			->method( 'getStats' );
 
-		$instance =	new DoctrineCache( $this->cache );
+		$instance = new DoctrineCache( $this->cache );
 
 		$this->assertEquals(
 			null,
