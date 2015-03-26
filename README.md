@@ -84,8 +84,8 @@ The library provides unit tests that covers the core-functionality normally run 
 ### Release notes
 
 - 1.1.0 (2015-01-26)
--- Added `NullCache`
--- Renamed `FixedInMemoryCache` to `FixedInMemoryLruCache`
+ - Added `NullCache`
+ - Renamed `FixedInMemoryCache` to `FixedInMemoryLruCache`
 
 - 1.0.0 Initial release (2015-01-16)
 

@@ -22,7 +22,7 @@ class DoctrineCacheTest extends \PHPUnit_Framework_TestCase {
 		parent::setUp();
 
 		if ( !interface_exists( '\Doctrine\Common\Cache\Cache' ) ) {
-			$this->markTestSkipped( 'Doctrine cache interface is not avilable' );
+			$this->markTestSkipped( 'Doctrine cache interface is not available' );
 		}
 
 		$this->cache = $this->getMockBuilder( '\Doctrine\Common\Cache\Cache' )
