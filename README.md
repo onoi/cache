@@ -84,7 +84,7 @@ The library provides unit tests that covers the core-functionality normally run 
 
 ### Release notes
 
-- 1.1.0 (2015-03-26)
+- 1.1.0 (2015-03-29)
  - Added `NullCache`
  - Added `ZendCache`
  - Renamed `FixedInMemoryCache` to `FixedInMemoryLruCache`
