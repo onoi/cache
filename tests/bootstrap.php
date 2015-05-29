@@ -15,9 +15,9 @@ if ( php_sapi_name() !== 'cli' ) {
 }
 
 if ( is_readable( $path = __DIR__ . '/../vendor/autoload.php' ) ) {
-	print( "\nUsing the local vendor autoloader ...\n\n" );
-} elseif ( is_readable( $path = __DIR__ . '/../../../vendor/autoload.php' ) ) {
-	print( "\nUsing the MediaWiki vendor autoloader ...\n\n" );
+	print( "\nUsing the cache vendor autoloader ...\n\n" );
+} elseif ( is_readable( $path = __DIR__ . '/../../../autoload.php' ) ) {
+	print( "\nUsing another local vendor autoloader ...\n\n" );
 } else {
 	die( 'The test suite requires a Composer based deployement.' );
 }
