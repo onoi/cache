@@ -14,10 +14,14 @@ if ( php_sapi_name() !== 'cli' ) {
 	die( 'Not an entry point' );
 }
 
-if ( !is_readable( __DIR__ . '/../../../autoload.php' ) ) {
-	die( 'The test suite requires the Composer autoloader to be present' );
+if ( is_readable( $path = __DIR__ . '/../vendor/autoload.php' ) ) {
+	print( "\nUsing the local vendor autoloader ...\n\n" );
+} elseif ( is_readable( $path = __DIR__ . '/../../../vendor/autoload.php' ) ) {
+	print( "\nUsing the MediaWiki vendor autoloader ...\n\n" );
+} else {
+	die( 'The test suite requires a Composer based deployement.' );
 }
 
-$autoLoader = require __DIR__ . '/../../../autoload.php';
+$autoLoader = require $path;
 $autoLoader->addPsr4( 'Onoi\\Cache\\Tests\\', __DIR__ . '/phpunit/Unit' );
 $autoLoader->addPsr4( 'Onoi\\Cache\\Tests\\Integration\\', __DIR__ . '/phpunit/Integration' );

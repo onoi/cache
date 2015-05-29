@@ -165,6 +165,15 @@ class FixedInMemoryLruCache implements Cache {
 		return $value;
 	}
 
+	/**
+	 * @since  1.2
+	 *
+	 * {@inheritDoc}
+	 */
+	public function getName() {
+		return __CLASS__;
+	}
+
 }
 
 // Renamed in 1.1

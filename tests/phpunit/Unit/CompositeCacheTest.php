@@ -35,13 +35,31 @@ class CompositeCacheTest extends \PHPUnit_Framework_TestCase {
 			->getMockForAbstractClass();
 
 		$this->setExpectedException( 'RuntimeException' );
-	 new CompositeCache( array( 'cache' => $cache ) );
+		new CompositeCache( array( 'cache' => $cache ) );
 	}
 
 	public function testConstructForInvalidCacheInstanceThrowsException() {
 
 		$this->setExpectedException( 'RuntimeException' );
-	 new CompositeCache( array( 'Foo' ) );
+		new CompositeCache( array( 'Foo' ) );
+	}
+
+	public function testGetName() {
+
+		$first = $this->getMockBuilder( '\Onoi\Cache\ZendCache' )
+			->disableOriginalConstructor()
+			->getMockForAbstractClass();
+
+		$second = $this->getMockBuilder( '\Onoi\Cache\DoctrineCache' )
+			->disableOriginalConstructor()
+			->getMockForAbstractClass();
+
+		$instance = new CompositeCache( array( $first, $second ) );
+
+		$this->assertInternalType(
+			'string',
+			$instance->getName()
+		);
 	}
 
 	public function testSave() {

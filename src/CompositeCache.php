@@ -122,10 +122,26 @@ class CompositeCache implements Cache {
 		$stats = array();
 
 		foreach ( $this->caches as $cache ) {
-			$stats[] = $cache->getStats();
+			$stats[$cache->getName()] = $cache->getStats();
 		}
 
 		return $stats;
+	}
+
+	/**
+	 * @since  1.2
+	 *
+	 * {@inheritDoc}
+	 */
+	public function getName() {
+
+		$name = '';
+
+		foreach ( $this->caches as $cache ) {
+			$name = $name . '::' . $cache->getName();
+		}
+
+		return __CLASS__ . $name;
 	}
 
 }

@@ -38,6 +38,16 @@ class MediaWikiCacheTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testGetName() {
+
+		$instance = new MediaWikiCache( $this->cache );
+
+		$this->assertInternalType(
+			'string',
+			$instance->getName()
+		);
+	}
+
 	public function testSave() {
 
 		$this->cache->expects( $this->once() )

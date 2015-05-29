@@ -31,6 +31,17 @@ class FixedInMemoryLruCacheTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testGetName() {
+
+		$instance = new FixedInMemoryLruCache( 5 );
+
+		$this->assertInternalType(
+			'string',
+			$instance->getName()
+		);
+	}
+
+
 	public function testItemRemoval() {
 
 		$instance = new FixedInMemoryLruCache( 5 );

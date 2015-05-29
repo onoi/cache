@@ -125,4 +125,13 @@ class MediaWikiCache implements Cache {
 		);
 	}
 
+	/**
+	 * @since  1.2
+	 *
+	 * {@inheritDoc}
+	 */
+	public function getName() {
+		return __CLASS__ . '::' . get_class( $this->cache );
+	}
+
 }

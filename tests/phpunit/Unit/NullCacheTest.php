@@ -24,6 +24,15 @@ class NullCacheTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testGetName() {
+
+		$instance = new NullCache();
+
+		$this->assertEmpty(
+			$instance->getName()
+		);
+	}
+
 	public function testSave() {
 
 		$instance = new NullCache();

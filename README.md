@@ -84,6 +84,10 @@ The library provides unit tests that covers the core-functionality normally run 
 
 ### Release notes
 
+- 1.2.0 (2015-05-29)
+ - Added `Cache::getName`
+ - Removed deprecated `FixedInMemoryCache`
+
 - 1.1.0 (2015-03-29)
  - Added `NullCache`
  - Added `ZendCache`

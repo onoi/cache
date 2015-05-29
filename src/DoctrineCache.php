@@ -73,4 +73,13 @@ class DoctrineCache implements Cache {
 		return $this->cache->getStats();
 	}
 
+	/**
+	 * @since  1.2
+	 *
+	 * {@inheritDoc}
+	 */
+	public function getName() {
+		return __CLASS__ . '::' . get_class( $this->cache );
+	}
+
 }

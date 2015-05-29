@@ -51,4 +51,13 @@ class NullCache implements Cache {
 		return array();
 	}
 
+	/**
+	 * @since  1.2
+	 *
+	 * {@inheritDoc}
+	 */
+	public function getName() {
+		return '';
+	}
+
 }

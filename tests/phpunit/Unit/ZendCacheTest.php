@@ -38,6 +38,16 @@ class ZendCacheTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	public function testGetName() {
+
+		$instance = new ZendCache( $this->cache );
+
+		$this->assertInternalType(
+			'string',
+			$instance->getName()
+		);
+	}
+
 	public function testSave() {
 
 		$adapterOptions = $this->getMockBuilder( '\Zend\Cache\Storage\Adapter\AdapterOptions' )

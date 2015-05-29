@@ -64,4 +64,11 @@ interface Cache {
 	 */
 	public function getStats();
 
+	/**
+	 * @since 1.2
+	 *
+	 * @return string
+	 */
+	public function getName();
+
 }
