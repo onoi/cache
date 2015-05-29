@@ -23,12 +23,6 @@ class FixedInMemoryLruCacheTest extends \PHPUnit_Framework_TestCase {
 			'\Onoi\Cache\FixedInMemoryLruCache',
 			new FixedInMemoryLruCache()
 		);
-
-		// Class alias with 1.1
-		$this->assertInstanceOf(
-			'\Onoi\Cache\FixedInMemoryCache',
-			new FixedInMemoryCache()
-		);
 	}
 
 	public function testGetName() {
@@ -40,7 +34,6 @@ class FixedInMemoryLruCacheTest extends \PHPUnit_Framework_TestCase {
 			$instance->getName()
 		);
 	}
-
 
 	public function testItemRemoval() {
 

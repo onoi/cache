@@ -156,15 +156,6 @@ class FixedInMemoryLruCache implements Cache {
 		);
 	}
 
-	private function moveToMostRecentlyUsedPosition( $id ) {
-
-		$value = $this->cache[ $id ];
-		unset( $this->cache[ $id ] );
-		$this->cache[ $id ] = $value;
-
-		return $value;
-	}
-
 	/**
 	 * @since  1.2
 	 *
@@ -174,8 +165,13 @@ class FixedInMemoryLruCache implements Cache {
 		return __CLASS__;
 	}
 
-}
+	private function moveToMostRecentlyUsedPosition( $id ) {
 
-// Renamed in 1.1
-// @codeCoverageIgnore
-class_alias( 'Onoi\Cache\FixedInMemoryLruCache', 'Onoi\Cache\FixedInMemoryCache' );
+		$value = $this->cache[ $id ];
+		unset( $this->cache[ $id ] );
+		$this->cache[ $id ] = $value;
+
+		return $value;
+	}
+
+}

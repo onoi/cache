@@ -93,7 +93,7 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 
 		// Legacy
 		$this->assertInstanceOf(
-			'\Onoi\Cache\FixedInMemoryCache',
+			'\Onoi\Cache\FixedInMemoryLruCache',
 			$instance->newFixedInMemoryCache( 1 )
 		);
 	}
