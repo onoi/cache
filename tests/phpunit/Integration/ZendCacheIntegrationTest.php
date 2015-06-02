@@ -13,9 +13,11 @@ use Onoi\Cache\ZendCache;
  *
  * @author mwjames
  */
-class ZendCacheIntegrationTest extends \PHPUnit_Framework_TestCase {
+class ZendCacheIntegrationTest extends CacheIntegrationTestCase {
 
-	public function testZendMemoryCache() {
+	protected $cache;
+
+	protected function setUp() {
 
 		if ( !class_exists( '\Zend\Cache\StorageFactory' ) ) {
 			$this->markTestSkipped( 'StorageFactory is not available' );
@@ -31,28 +33,7 @@ class ZendCacheIntegrationTest extends \PHPUnit_Framework_TestCase {
 			),
 		) );
 
-		$instance = new ZendCache( $memoryCache );
-
-		$this->assertFalse(
-			$instance->contains( 'Foo' )
-		);
-
-		$instance->save( 'Foo', 'Bar', 42 );
-
-		$this->assertTrue(
-			$instance->contains( 'Foo' )
-		);
-
-		$this->assertEquals(
-			'Bar',
-			$instance->fetch( 'Foo' )
-		);
-
-		$instance->delete( 'Foo' );
-
-		$this->assertFalse(
-			$instance->contains( 'Foo' )
-		);
+		$this->cache = new ZendCache( $memoryCache );
 	}
 
 }

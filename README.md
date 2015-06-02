@@ -33,7 +33,6 @@ the dependency to your [composer.json][composer].
 	}
 }
 ```
-or to execute `composer require onoi/cache:~1.1`.
 
 ## Usage
 
@@ -80,11 +79,11 @@ developers mailing list and have a look at the [contribution guidelinee](/CONTRI
 
 ### Tests
 
-The library provides unit tests that covers the core-functionality normally run by the [continues integration platform][travis]. Tests can also be executed manually using the PHPUnit configuration file found in the root directory.
+The library provides unit tests that covers the core-functionality normally run by the [continues integration platform][travis]. Tests can also be executed manually using the `composer phpunit` command from the root directory.
 
 ### Release notes
 
-- 1.2.0 (2015-05-29)
+- 1.2.0 (2015-06-02)
  - Added `Cache::getName`
  - Removed deprecated `FixedInMemoryCache`
 
@@ -93,7 +92,8 @@ The library provides unit tests that covers the core-functionality normally run 
  - Added `ZendCache`
  - Renamed `FixedInMemoryCache` to `FixedInMemoryLruCache`
 
-- 1.0.0 Initial release (2015-01-16)
+- 1.0.0 (2015-01-16)
+ - Initial release
 
 ## License
 

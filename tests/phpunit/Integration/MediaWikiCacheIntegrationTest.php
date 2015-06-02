@@ -13,36 +13,17 @@ use Onoi\Cache\MediaWikiCache;
  *
  * @author mwjames
  */
-class MediaWikiCacheIntegrationTest extends \PHPUnit_Framework_TestCase {
+class MediaWikiCacheIntegrationTest extends CacheIntegrationTestCase {
 
-	public function testHashBagOStuff() {
+	protected $cache;
+
+	protected function setUp() {
 
 		if ( !class_exists( '\HashBagOStuff' ) ) {
 			$this->markTestSkipped( 'HashBagOStuff is not available' );
 		}
 
-		$instance = new MediaWikiCache( new HashBagOStuff() );
-
-		$this->assertFalse(
-			$instance->contains( 'Foo' )
-		);
-
-		$instance->save( 'Foo', 'Bar', 42 );
-
-		$this->assertTrue(
-			$instance->contains( 'Foo' )
-		);
-
-		$this->assertEquals(
-			'Bar',
-			$instance->fetch( 'Foo' )
-		);
-
-		$instance->delete( 'Foo' );
-
-		$this->assertFalse(
-			$instance->contains( 'Foo' )
-		);
+		$this->cache = new MediaWikiCache( new HashBagOStuff() );
 	}
 
 }

@@ -13,36 +13,17 @@ use Onoi\Cache\DoctrineCache;
  *
  * @author mwjames
  */
-class DoctrineCacheIntegrationTest extends \PHPUnit_Framework_TestCase {
+class DoctrineCacheIntegrationTest extends CacheIntegrationTestCase {
 
-	public function testDoctrineArrayCache() {
+	protected $cache;
+
+	protected function setUp() {
 
 		if ( !class_exists( '\Doctrine\Common\Cache\ArrayCache' ) ) {
 			$this->markTestSkipped( 'ArrayCache is not available' );
 		}
 
-		$instance = new DoctrineCache( new ArrayCache() );
-
-		$this->assertFalse(
-			$instance->contains( 'Foo' )
-		);
-
-		$instance->save( 'Foo', 'Bar', 42 );
-
-		$this->assertTrue(
-			$instance->contains( 'Foo' )
-		);
-
-		$this->assertEquals(
-			'Bar',
-			$instance->fetch( 'Foo' )
-		);
-
-		$instance->delete( 'Foo' );
-
-		$this->assertFalse(
-			$instance->contains( 'Foo' )
-		);
+		$this->cache = new DoctrineCache( new ArrayCache() );
 	}
 
 }
