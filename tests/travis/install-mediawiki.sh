@@ -7,9 +7,9 @@ cd ..
 ## introduced by MediaWiki core
 if [[ "$MW" == *@* ]]
 then
-  arrMw=(${MW//@/ })
-  MW=${arrMw[0]}
-  SOURCE=${arrMw[1]}
+	arrMw=(${MW//@/ })
+	MW=${arrMw[0]}
+	SOURCE=${arrMw[1]}
 else
  MW=$MW
  SOURCE=$MW
@@ -17,17 +17,18 @@ fi
 
 if [ "$MW" != "" ]
 then
-  wget https://github.com/wikimedia/mediawiki/archive/$SOURCE.tar.gz -O $MW.tar.gz
+	wget https://github.com/wikimedia/mediawiki/archive/$SOURCE.tar.gz -O $MW.tar.gz
 
-  tar -zxf $MW.tar.gz
-  mv mediawiki-* mw
+	tar -zxf $MW.tar.gz
+	mv mediawiki-* mw
 
-  cd mw
-  
-  composer install
+	cd mw
 
-  mysql -e 'create database its_a_mw;'
-  php maintenance/install.php --dbtype $DB --dbuser root --dbname its_a_mw --dbpath $(pwd) --pass nyan TravisWiki admin --scriptpath /TravisWiki
+	composer self-update
+	composer install
+
+	mysql -e 'create database its_a_mw;'
+	php maintenance/install.php --dbtype $DB --dbuser root --dbname its_a_mw --dbpath $(pwd) --pass nyan TravisWiki admin --scriptpath /TravisWiki
 
 	echo 'error_reporting(E_ALL| E_STRICT);' >> LocalSettings.php
 	echo 'ini_set("display_errors", 1);' >> LocalSettings.php
@@ -37,5 +38,5 @@ then
 
 	php maintenance/update.php --quick
 else
-  mkdir mw
+	mkdir mw
 fi

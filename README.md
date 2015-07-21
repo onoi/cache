@@ -61,8 +61,8 @@ $instance->doSomething( 'bar' );
 
 $compositeCache = $cacheFactory->newCompositeCache( array(
 	$cacheFactory->newFixedInMemoryLruCache( 500 ),
-	$cacheFactory->newMediaWikiCache( new \SqlBagOStuf() ),
-	$cacheFactory->newDoctrineCache( new \Doctrine\Common\Cache\FileCache( '/C/Foo' ) )
+	$cacheFactory->newDoctrineCache( new \Doctrine\Common\Cache\RedisCache() ),
+	$cacheFactory->newMediaWikiCache( new \SqlBagOStuf() )
 ) );
 
 $instance = new Foo( $compositeCache );
