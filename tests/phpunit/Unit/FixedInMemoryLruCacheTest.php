@@ -149,4 +149,47 @@ class FixedInMemoryLruCacheTest extends \PHPUnit_Framework_TestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider ttlConstantProvider
+	 */
+	public function testTtlConstantAccess( $ttl ) {
+
+		$instance = new FixedInMemoryLruCache( 5 );
+		$instance->save( 'foo', 'Bar', $ttl );
+
+		$this->assertEquals(
+			'Bar',
+			$instance->fetch( 'foo' )
+		);
+	}
+
+	public function ttlConstantProvider() {
+
+		$provider[] = array(
+			FixedInMemoryLruCache::TTL_MINUTE
+		);
+
+		$provider[] = array(
+			FixedInMemoryLruCache::TTL_HOUR
+		);
+
+		$provider[] = array(
+			FixedInMemoryLruCache::TTL_DAY
+		);
+
+		$provider[] = array(
+			FixedInMemoryLruCache::TTL_WEEK
+		);
+
+		$provider[] = array(
+			FixedInMemoryLruCache::TTL_MONTH
+		);
+
+		$provider[] = array(
+			FixedInMemoryLruCache::TTL_YEAR
+		);
+
+		return $provider;
+	}
+
 }

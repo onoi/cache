@@ -16,6 +16,17 @@ namespace Onoi\Cache;
 interface Cache {
 
 	/**
+	 * Convenience constants to describe some common TTL values
+	 * in seconds
+	 */
+	const TTL_MINUTE = 60;
+	const TTL_HOUR = 3600;
+	const TTL_DAY = 86400; // 24 * 3600
+	const TTL_WEEK = 604800; // 7 * 24 * 3600
+	const TTL_MONTH = 2592000; // 30 * 24 * 3600
+	const TTL_YEAR = 31536000; // 365 * 24 * 3600
+
+	/**
 	 * Returns a cache item or false if no entry was found
 	 *
 	 * @since 1.0

@@ -37,11 +37,13 @@ the dependency to your [composer.json][composer].
 ## Usage
 
 ```php
+use Onoi\Cache\Cache;
+
 class Foo {
 
 	private $cache = null;
 
-	public function __constructor( Onoi\Cache\Cache $cache ) {
+	public function __constructor( Cache $cache ) {
 		$this->cache = $cache;
 	}
 
@@ -58,6 +60,8 @@ $cacheFactory = new CacheFactory();
 
 $instance = new Foo( $cacheFactory->newFixedInMemoryLruCache( 500 ) );
 $instance->doSomething( 'bar' );
+
+or
 
 $compositeCache = $cacheFactory->newCompositeCache( array(
 	$cacheFactory->newFixedInMemoryLruCache( 500 ),
