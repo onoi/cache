@@ -6,7 +6,6 @@ use Onoi\Cache\CacheFactory;
 
 /**
  * @covers \Onoi\Cache\CacheFactory
- *
  * @group onoi-cache
  *
  * @license GNU GPL v2+
@@ -137,6 +136,20 @@ class CacheFactoryTest extends \PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf(
 			'\Onoi\Cache\ZendCache',
 			$instance->newZendCache( $cache )
+		);
+	}
+
+	public function testCanConstructByCallbackCache() {
+
+		$cache = $this->getMockBuilder( '\Onoi\Cache\Cache' )
+			->disableOriginalConstructor()
+			->getMockForAbstractClass();
+
+		$instance = new CacheFactory();
+
+		$this->assertInstanceOf(
+			'\Onoi\Cache\ByCallbackCache',
+			$instance->newByCallbackCache( $cache )
 		);
 	}
 

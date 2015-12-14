@@ -87,6 +87,10 @@ The library provides unit tests that covers the core-functionality normally run 
 
 ### Release notes
 
+- 1.3.0 (2015-12-??)
+ - Added `ByCallbackCache` as convenience class to invoke a callback on a fetch operation
+ - Added TTL convenience constants such as `Cache::TTL_MINUTE` including min, hour, day, week, month, and year
+
 - 1.2.0 (2015-06-02)
  - Added `Cache::getName`
  - Removed deprecated `FixedInMemoryCache`

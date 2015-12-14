@@ -113,4 +113,15 @@ class CacheFactory {
 		return new ZendCache( $cache );
 	}
 
+	/**
+	 * @since 1.3
+	 *
+	 * @param Cache $cache
+	 *
+	 * @return ByCallbackCache
+	 */
+	public function newByCallbackCache( Cache $cache ) {
+		return new ByCallbackCache( $cache );
+	}
+
 }
