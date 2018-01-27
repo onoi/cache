@@ -6,6 +6,13 @@ MW_INSTALL_PATH=$BASE_PATH/../mw
 
 cd $MW_INSTALL_PATH
 
+if [ "$PHPUNIT" != "" ]
+then
+	composer require 'phpunit/phpunit='$PHPUNIT --update-with-dependencies
+else
+	composer require 'phpunit/phpunit=5.7.*' --update-with-dependencies
+fi
+
 if [ "$MW" != "" ]
 then
 	echo -e "Running MW root composer install build on $TRAVIS_BRANCH \n"
