@@ -13,6 +13,8 @@ matrix:
       php: '7'
     - env: TYPE=UNIT; PHPUNIT=4.8.*
       php: hhvm
+  allow_failures:
+    - env: TYPE=UNIT; PHPUNIT=4.8.*
 
 install:
   - bash ./tests/travis/install-mediawiki.sh
